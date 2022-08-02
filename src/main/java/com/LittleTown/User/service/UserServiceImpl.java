@@ -6,6 +6,8 @@ import com.LittleTown.Status;
 import com.LittleTown.User.domain.User;
 import com.LittleTown.User.domain.UserRepository;
 import com.LittleTown.User.dto.UserJoinRequestDto;
+import com.LittleTown.User.dto.UserLoginRequestDto;
+import com.LittleTown.User.dto.UserLoginResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +37,21 @@ public class UserServiceImpl implements UserService {
             else {
                 userRepository.save(userJoinRequestDto.toEntity());
                 return new ResponseDto(Status.OK, Message.JOIN_SUCCESS);
+            }
+        }
+    }
+
+    @Override
+    public ResponseDto login(UserLoginRequestDto userLoginRequestDto) throws Exception {
+        if (userLoginRequestDto.isEmpty()) {
+            throw new Exception(Message.MISSING_ARGUMENT);
+        } else {
+            Optional<User> idCheck = userRepository.findById(userLoginRequestDto.getId());
+            if (!idCheck.get().getId().equals(userLoginRequestDto.getId()) || !idCheck.get().getPw().equals(userLoginRequestDto.getPw())) {
+                throw new Exception(Message.ID_PW_ERROR);
+            } else {
+                UserLoginResponseDto responseDto = new UserLoginResponseDto(idCheck.get().getUseridx());
+                return new ResponseDto(Status.OK, Message.LOGIN_SUCCESS, responseDto);
             }
         }
     }

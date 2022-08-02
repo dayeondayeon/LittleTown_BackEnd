@@ -4,6 +4,7 @@ import com.LittleTown.Message;
 import com.LittleTown.ResponseDto;
 import com.LittleTown.Status;
 import com.LittleTown.User.dto.UserJoinRequestDto;
+import com.LittleTown.User.dto.UserLoginRequestDto;
 import com.LittleTown.User.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -22,6 +23,16 @@ public class UserController {
     public ResponseEntity join(@RequestBody UserJoinRequestDto userJoinRequestDto) {
         try {
             ResponseDto responseDto = userService.join(userJoinRequestDto);
+            return ResponseEntity.ok().body(ResponseDto.res(Status.OK, responseDto.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(ResponseDto.res(Status.BAD_REQUEST, e.getMessage()));
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity login(@RequestBody UserLoginRequestDto userLoginRequestDto) {
+        try {
+            ResponseDto responseDto = userService.login(userLoginRequestDto);
             return ResponseEntity.ok().body(ResponseDto.res(Status.OK, responseDto.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(ResponseDto.res(Status.BAD_REQUEST, e.getMessage()));
