@@ -12,12 +12,12 @@ public class UserJoinRequestDto {
     private String id;
     private String pw;
     private String nickname;
-    PasswordEncoder passwordEncoder;
+    //PasswordEncoder passwordEncoder;
 
     @Builder
     public UserJoinRequestDto(String id, String pw, String nickname) {
         this.id = id;
-        this.pw = encodePw(pw);
+        this.pw = pw;
         this.nickname = nickname;
     }
 
@@ -40,8 +40,8 @@ public class UserJoinRequestDto {
         }
     }
 
-    private String encodePw(String pw) {
-        return passwordEncoder.encode(pw);
-    }
+//    private String encodePw(String pw) {
+//        return passwordEncoder.encode(pw);
+//    }
 
 }

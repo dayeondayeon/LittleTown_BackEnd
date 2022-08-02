@@ -33,8 +33,7 @@ public class UserServiceImpl implements UserService {
                 throw new Exception(Message.ALREADY_EXIST_NICKNAME);
             }
             else {
-
-
+                userRepository.save(userJoinRequestDto.toEntity());
                 return new ResponseDto(Status.OK, Message.JOIN_SUCCESS);
             }
         }
