@@ -9,4 +9,5 @@ public class Message {
     public static final String ID_PW_ERROR = "아이디 또는 패스워드 불일치";
     public static final String INVALID_USER = "존재하지 않는 아이디";
     public static final String EMAIL_SEND_SUCCESS = "이메일 작성 성공";
+    public static final String EMAIL_LIST_SUCCESS = "이메일 리스트 가져오기 성공";
 }

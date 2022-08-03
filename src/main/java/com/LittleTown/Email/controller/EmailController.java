@@ -1,10 +1,11 @@
 package com.LittleTown.Email.controller;
 
+import com.LittleTown.Email.dto.EmailReceiveResponseDto;
 import com.LittleTown.Email.dto.EmailSendRequestDto;
 import com.LittleTown.Email.service.EmailServiceImpl;
+import com.LittleTown.Message;
 import com.LittleTown.ResponseDto;
 import com.LittleTown.Status;
-import com.LittleTown.User.dto.UserJoinRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,4 +26,13 @@ public class EmailController {
         }
     }
 
+    @GetMapping("/list/{userIdx}")
+    public ResponseEntity getList(@PathVariable long userIdx) {
+        try {
+            EmailReceiveResponseDto responseDto = emailService.receive(userIdx);
+            return ResponseEntity.ok().body(ResponseDto.res(Status.OK, Message.EMAIL_LIST_SUCCESS, responseDto));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(ResponseDto.res(Status.BAD_REQUEST, e.getMessage()));
+        }
+    }
 }
