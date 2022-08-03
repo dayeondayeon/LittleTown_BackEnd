@@ -8,6 +8,7 @@ import com.LittleTown.User.domain.UserRepository;
 import com.LittleTown.User.dto.UserJoinRequestDto;
 import com.LittleTown.User.dto.UserLoginRequestDto;
 import com.LittleTown.User.dto.UserLoginResponseDto;
+import com.LittleTown.User.dto.UserSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,4 +56,10 @@ public class UserServiceImpl implements UserService {
             }
         }
     }
+
+    @Override
+    public ResponseDto save(UserSaveRequestDto userSaveRequestDto) throws Exception {
+        return null;
+    }
+
 }
