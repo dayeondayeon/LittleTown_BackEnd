@@ -7,4 +7,6 @@ public class Message {
     public static final String LOGIN_SUCCESS = "로그인 성공";
     public static final String MISSING_ARGUMENT = "필수 데이터 누락";
     public static final String ID_PW_ERROR = "아이디 또는 패스워드 불일치";
+    public static final String INVALID_USER = "존재하지 않는 아이디";
+    public static final String EMAIL_SEND_SUCCESS = "이메일 작성 성공";
 }
