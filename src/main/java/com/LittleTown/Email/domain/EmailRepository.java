@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface EmailRepository extends JpaRepository<Email, Long> {
-    List<Email> findByWriter(long userIdx);
+    List<Email> findByReceiver(long userIdx);
 }

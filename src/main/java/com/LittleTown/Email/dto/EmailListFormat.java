@@ -7,12 +7,14 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class EmailListFormat {
-    private String nickname;
+    private String receiverNickname;
+    private String senderNickname;
     private String contents;
 
     @Builder
-    public EmailListFormat (String nickname, String contents) {
-        this.nickname = nickname;
+    public EmailListFormat (String receiverNickname, String senderNickname, String contents) {
+        this.receiverNickname = receiverNickname;
+        this.senderNickname = senderNickname;
         this.contents = contents;
     }
 }

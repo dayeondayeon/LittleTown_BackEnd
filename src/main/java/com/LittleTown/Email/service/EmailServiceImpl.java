@@ -47,12 +47,16 @@ public class EmailServiceImpl implements EmailService {
             throw new Exception(Message.INVALID_USER);
         }
         else {
-            List<Email> emails = emailRepository.findByWriter(userIdx);
+            List<Email> emails = emailRepository.findByReceiver(userIdx); // 받는 사람 userIdx 인 이메일목록 불러오기
             List<EmailListFormat> responseEmails = new ArrayList<>();
-            String nickname = user.get().getNickname();
+            String receiver = user.get().getNickname();
+
             for (Email e : emails) {
-                EmailListFormat emailListFormat = new EmailListFormat(nickname, e.getContents());
+                String sender = userRepository.findById(e.getSender()).get().getNickname(); // 보낸 사람 닉네임 찾기.
+                EmailListFormat emailListFormat = new EmailListFormat(receiver, sender, e.getContents());
+                responseEmails.add(emailListFormat);
             }
+
             return new EmailReceiveResponseDto(responseEmails);
         }
     }
