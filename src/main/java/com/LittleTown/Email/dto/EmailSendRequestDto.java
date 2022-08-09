@@ -26,4 +26,12 @@ public class EmailSendRequestDto {
                 .contents(contents)
                 .build();
     }
+
+    public boolean isEmpty() {
+        if (this.contents.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -27,7 +27,7 @@ public class EmailController {
     }
 
     @GetMapping("/list/{userIdx}")
-    public ResponseEntity getList(@PathVariable long userIdx) {
+    public ResponseEntity getList(@PathVariable("userIdx") long userIdx) {
         try {
             EmailReceiveResponseDto responseDto = emailService.receive(userIdx);
             return ResponseEntity.ok().body(ResponseDto.res(Status.OK, Message.EMAIL_LIST_SUCCESS, responseDto));
