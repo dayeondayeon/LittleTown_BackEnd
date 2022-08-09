@@ -26,33 +26,45 @@ public class UserServiceImpl implements UserService {
         if (userJoinRequestDto.isEmpty() == true) {
             throw new Exception(Message.MISSING_ARGUMENT);
         } else {
-            Optional<User> idCheck = userRepository.findById(userJoinRequestDto.getId());
-            Optional<User> nicknameCheck = userRepository.findByNickname(userJoinRequestDto.getNickname());
+            try {
+                Optional<User> idCheck = userRepository.findById(userJoinRequestDto.getId());
+                Optional<User> nicknameCheck = userRepository.findByNickname(userJoinRequestDto.getNickname());
 
-            if (idCheck.isEmpty() == false) {
-                throw new Exception(Message.ALREADY_EXIST_ID);
-            }
-            else if (nicknameCheck.isEmpty() == false) {
-                throw new Exception(Message.ALREADY_EXIST_NICKNAME);
-            }
-            else {
+                if (idCheck.isEmpty() == false) {
+                    throw new Exception(Message.ALREADY_EXIST_ID);
+                }
+                if (nicknameCheck.isEmpty() == false) {
+                    throw new Exception(Message.ALREADY_EXIST_NICKNAME);
+                }
                 userRepository.save(userJoinRequestDto.toEntity());
                 return new ResponseDto(Status.OK, Message.JOIN_SUCCESS);
+            }
+            catch (Exception e) {
+                throw new Exception(e.getMessage());
             }
         }
     }
 
     @Override
+    @Transactional
     public ResponseDto login(UserLoginRequestDto userLoginRequestDto) throws Exception {
-        if (userLoginRequestDto.isEmpty()) {
+        if (userLoginRequestDto.isEmpty() || userLoginRequestDto.getId().isEmpty()) {
             throw new Exception(Message.MISSING_ARGUMENT);
-        } else {
-            Optional<User> idCheck = userRepository.findById(userLoginRequestDto.getId());
-            if (!idCheck.get().getId().equals(userLoginRequestDto.getId()) || !idCheck.get().getPw().equals(userLoginRequestDto.getPw())) {
-                throw new Exception(Message.ID_PW_ERROR);
-            } else {
-                UserLoginResponseDto responseDto = new UserLoginResponseDto(idCheck.get().getUseridx());
-                return new ResponseDto(Status.OK, Message.LOGIN_SUCCESS, responseDto);
+        }
+        else {
+            try {
+                Optional<User> idCheck = userRepository.findById(userLoginRequestDto.getId());
+                if (idCheck.isEmpty()) {
+                    throw new Exception(Message.INVALID_USER);
+                }
+                else if (!idCheck.get().getId().equals(userLoginRequestDto.getId()) || !idCheck.get().getPw().equals(userLoginRequestDto.getPw())) {
+                    throw new Exception(Message.ID_PW_ERROR);
+                } else {
+                    UserLoginResponseDto responseDto = new UserLoginResponseDto(idCheck.get().getUseridx());
+                    return new ResponseDto(Status.OK, Message.LOGIN_SUCCESS, responseDto);
+                }
+            } catch (Exception e) {
+                throw new Exception(e.getMessage());
             }
         }
     }

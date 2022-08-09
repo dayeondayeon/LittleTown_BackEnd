@@ -1,6 +1,5 @@
 package com.LittleTown.User.controller;
 
-import com.LittleTown.Message;
 import com.LittleTown.ResponseDto;
 import com.LittleTown.Status;
 import com.LittleTown.User.dto.UserJoinRequestDto;
