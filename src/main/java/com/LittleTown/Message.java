@@ -11,4 +11,6 @@ public class Message {
     public static final String EMAIL_SEND_SUCCESS = "이메일 작성 성공";
     public static final String EMAIL_LIST_SUCCESS = "이메일 리스트 가져오기 성공";
     public static final String INVALID_REQUEST = "잘못된 요청";
+    public static final String INVALID_ITEM = "존재하지 않는 아이템 정보";
+    public static final String ITEM_SAVE_SUCCESS = "아이템 저장 성공";
 }
