@@ -33,12 +33,18 @@ public class EmailServiceImpl implements EmailService {
         else {
             try {
                 Optional<User> sender = userRepository.findById(emailSendRequestDto.getSender());
-                Optional<User> receiver = userRepository.findById(emailSendRequestDto.getReceiver());
+                Optional<User> receiver = userRepository.findByNickname(emailSendRequestDto.getReceiverName());
 
                 if (sender.isEmpty() || receiver.isEmpty()) {
                     throw new Exception(Message.INVALID_USER);
                 }
-                emailRepository.save(emailSendRequestDto.toEntity());
+
+                if (sender.equals(receiver)) {
+                    throw new Exception(Message.INVALID_REQUEST);
+                }
+
+                Email email = new Email(emailSendRequestDto.getSender(), receiver.get().getUseridx(), emailSendRequestDto.getContents());
+                emailRepository.save(email);
                 return new ResponseDto(Status.OK, Message.EMAIL_SEND_SUCCESS);
             } catch (Exception e) {
                 throw new Exception(e.getMessage());

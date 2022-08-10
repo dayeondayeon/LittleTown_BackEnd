@@ -9,22 +9,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class EmailSendRequestDto {
     private long sender;
-    private long receiver;
+    private String receiverName;
     private String contents;
 
     @Builder
-    public EmailSendRequestDto(long sender, long receiver, String contents) {
+    public EmailSendRequestDto(long sender, String receiverName, String contents) {
         this.sender = sender;
-        this.receiver = receiver;
+        this.receiverName = receiverName;
         this.contents = contents;
-    }
-
-    public Email toEntity() {
-        return Email.builder()
-                .sender(sender)
-                .receiver(receiver)
-                .contents(contents)
-                .build();
     }
 
     public boolean isEmpty() {

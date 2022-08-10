@@ -10,4 +10,5 @@ public class Message {
     public static final String INVALID_USER = "존재하지 않는 아이디";
     public static final String EMAIL_SEND_SUCCESS = "이메일 작성 성공";
     public static final String EMAIL_LIST_SUCCESS = "이메일 리스트 가져오기 성공";
+    public static final String INVALID_REQUEST = "잘못된 요청";
 }
