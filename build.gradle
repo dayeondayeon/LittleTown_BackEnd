@@ -3,7 +3,9 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.12.RELEASE'
 	id 'java'
 }
-
+jar {
+	enabled = false
+}
 group = 'com.LittleTown'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
