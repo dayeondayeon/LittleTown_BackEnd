@@ -4,10 +4,12 @@ import com.LittleTown.Storage.domain.Storage;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @NoArgsConstructor
-public class PutRequestDto {
+public class PutItemRequestDto {
     private long userIdx;
     private long itemIdx;
     private long count;
@@ -15,7 +17,7 @@ public class PutRequestDto {
     private int storageType;
 
     @Builder
-    public PutRequestDto(long userIdx, long itemIdx, long count, int itemType, int storageType) {
+    public PutItemRequestDto(long userIdx, long itemIdx, long count, int itemType, int storageType) {
         this.userIdx = userIdx;
         this.itemIdx = itemIdx;
         this.count = count;
