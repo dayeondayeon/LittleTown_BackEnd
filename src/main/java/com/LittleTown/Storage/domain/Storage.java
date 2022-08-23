@@ -4,10 +4,12 @@ import com.LittleTown.User.domain.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 public class Storage {
@@ -34,4 +36,5 @@ public class Storage {
         this.count = count;
         this.storageType = storageType;
     }
+
 }

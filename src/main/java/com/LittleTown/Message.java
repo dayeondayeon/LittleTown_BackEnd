@@ -14,5 +14,5 @@ public class Message {
     public static final String INVALID_ITEM = "존재하지 않는 아이템 정보";
     public static final String ITEM_SAVE_SUCCESS = "아이템 저장 성공";
     public static final String ITEM_GET_SUCCESS = "아이템 꺼내기 성공";
-    public static final String ITEM_GET_FAIL = "소유하고 있지 않은 아이템";
+    public static final String ITEM_GET_FAIL = "소유하고 있지 않거나 잘못된 아이템 타입";
 }
