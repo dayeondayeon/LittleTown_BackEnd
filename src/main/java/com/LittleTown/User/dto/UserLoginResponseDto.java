@@ -8,9 +8,13 @@ import lombok.Getter;
 @Getter
 public class UserLoginResponseDto {
     public Long userIdx;
+    public Long clothIdx;
+    public Long money;
 
     @Builder
-    public UserLoginResponseDto (Long userIdx) {
+    public UserLoginResponseDto (Long userIdx, Long clothIdx, Long money) {
         this.userIdx = userIdx;
+        this.clothIdx = clothIdx;
+        this.money = money;
     }
 }

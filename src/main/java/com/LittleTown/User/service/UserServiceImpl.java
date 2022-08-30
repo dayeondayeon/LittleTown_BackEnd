@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
                 else if (!idCheck.get().getId().equals(userLoginRequestDto.getId()) || !idCheck.get().getPw().equals(userLoginRequestDto.getPw())) {
                     throw new Exception(Message.ID_PW_ERROR);
                 } else {
-                    UserLoginResponseDto responseDto = new UserLoginResponseDto(idCheck.get().getUseridx());
+                    UserLoginResponseDto responseDto = new UserLoginResponseDto(idCheck.get().getUseridx(), idCheck.get().getClothes(), idCheck.get().getMoney());
                     return new ResponseDto(Status.OK, Message.LOGIN_SUCCESS, responseDto);
                 }
             } catch (Exception e) {
