@@ -22,7 +22,7 @@ public class StorageController {
     private final HouseStorageServiceImpl houseStorageService;
 
     // 옷장
-    @PostMapping("/closet")
+    @PostMapping("/closet/add")
     public ResponseEntity putCloth(@RequestBody PutItemRequestDto putRequestDto) {
         try {
             ResponseDto responseDto = closetService.putInto(putRequestDto);
@@ -43,6 +43,16 @@ public class StorageController {
     }
 
     // 창고
+    @PostMapping("/add")
+    public ResponseEntity putCropSeed(@RequestBody PutItemRequestDto putRequestDto) {
+        try {
+            ResponseDto responseDto = houseStorageService.putInto(putRequestDto);
+            return ResponseEntity.ok().body(ResponseDto.res(Status.OK, responseDto.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(ResponseDto.res(Status.BAD_REQUEST, e.getMessage()));
+        }
+    }
+
     @PostMapping("/take")
     public ResponseEntity takeCropSeed(@RequestBody GetItemRequestDto getItemRequestDto) {
         try {
