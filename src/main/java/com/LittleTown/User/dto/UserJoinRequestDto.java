@@ -25,7 +25,7 @@ public class UserJoinRequestDto {
                 .pw(pw)
                 .nickname(nickname)
                 .clothes(1L)
-                .money(0L)
+                .money(20L)
                 .build();
     }
 
